@@ -1,0 +1,18 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  themeservice:
+    build:
+      context: "D:\\Projects\\WepApps\\Education\\ForumTemplate"
+      dockerfile: "src/Services/ThemeService/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/ThemeService.dll"
+    environment: {}
+    image: "themeservice:dev"
+    ports: []
+    volumes:
+    - "D:\\Projects\\WepApps\\Education\\ForumTemplate\\src\\Services\\ThemeService:/app:rw"
+    working_dir: "/app"

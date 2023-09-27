@@ -1,0 +1,49 @@
+﻿version: '3.8'
+services:
+  themesubscriptionservice:
+    container_name: theme_subscription_service
+#    image: sadfield/forum_template.theme_subscription_service:latest
+    restart: on-failure
+    ports:
+      - "8030:80"
+      - "8031:443"
+    build:
+      context: .
+      dockerfile: src/Services/ThemeSubscriptionService/Dockerfile
+    networks:
+      - themesubscription_db_network
+      - rabbit_network
+    depends_on:
+      - themesubscription_db
+    environment:
+      - ConnectionStrings__DbContext=User Id=${POSTGRES_USER:?database user not set};Password=${POSTGRES_PASSWORD:?database password not set};Server=themesubscription_db;Port=5432;Database=${POSTGRES_DB:?database name not set};
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Production
+      - RabbitMQ__Host=${RABBITMQ_HOST}
+      - RabbitMQ__Port=${RABBITMQ_PORT}
+      - RabbitMQ__UserName=${RABBITMQ_USERNAME}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+
+  themesubscription_db:
+    container_name: theme_subscription_postgres_db
+    image: postgres:15.4-alpine
+    ports:
+      - "5433:5432"
+    networks:
+      - themesubscription_db_network
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?database user not set}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?database password not set}
+      - POSTGRES_DB=${POSTGRES_DB:?database name not set}
+    volumes:
+      - themesubscription_db_data:/var/lib/postgresql/data
+
+networks:
+  themesubscription_db_network:
+    driver: bridge
+  rabbit_network:
+    external: true
+    name: rabbit_network
+
+volumes:
+  themesubscription_db_data:

@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostService", "src\Services\PostService\PostService.csproj", "{B9795768-4CB1-4B9F-97F8-6A42F102A5A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "src\Services\IdentityService\IdentityService.csproj", "{25600D35-CA43-4FD3-AA08-5FE8CD948C61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeService", "src\Services\ThemeService\ThemeService.csproj", "{AF0D7E5A-8BE2-4117-9212-9D4FDE11BC58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2995E65-2A51-4999-8252-CB86619DA4C3}"
+	ProjectSection(SolutionItems) = preProject
+		identity-docker-compose.yml = identity-docker-compose.yml
+		.env = .env
+		post-docker-compose.yml = post-docker-compose.yml
+		theme-docker-compose.yml = theme-docker-compose.yml
+		themesubscription-docker-compose.yml = themesubscription-docker-compose.yml
+		rabbitmq-docker-compose.yml = rabbitmq-docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeSubscriptionService", "src\Services\ThemeSubscriptionService\ThemeSubscriptionService.csproj", "{55B3287A-6E02-4F59-9833-9F3CB93758C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9795768-4CB1-4B9F-97F8-6A42F102A5A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9795768-4CB1-4B9F-97F8-6A42F102A5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9795768-4CB1-4B9F-97F8-6A42F102A5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9795768-4CB1-4B9F-97F8-6A42F102A5A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25600D35-CA43-4FD3-AA08-5FE8CD948C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25600D35-CA43-4FD3-AA08-5FE8CD948C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25600D35-CA43-4FD3-AA08-5FE8CD948C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25600D35-CA43-4FD3-AA08-5FE8CD948C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0D7E5A-8BE2-4117-9212-9D4FDE11BC58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0D7E5A-8BE2-4117-9212-9D4FDE11BC58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0D7E5A-8BE2-4117-9212-9D4FDE11BC58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0D7E5A-8BE2-4117-9212-9D4FDE11BC58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B3287A-6E02-4F59-9833-9F3CB93758C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B3287A-6E02-4F59-9833-9F3CB93758C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B3287A-6E02-4F59-9833-9F3CB93758C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B3287A-6E02-4F59-9833-9F3CB93758C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

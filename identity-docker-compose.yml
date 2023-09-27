@@ -1,0 +1,58 @@
+﻿version: '3.8'
+services:  
+  identityservice:
+    container_name: identity_service
+#    image: sadfield/forum_template.identity_service:latest
+    restart: on-failure
+    ports:
+      - "8040:80"
+      - "8041:443"
+    build:
+      context: .
+      dockerfile: src/Services/IdentityService/Dockerfile
+    networks:
+      - identity_db_network
+    depends_on:
+      - identityservice_db
+    environment:
+      - ConnectionStrings__DbContext=User Id=${POSTGRES_USER:?database user not set};Password=${POSTGRES_PASSWORD:?database password not set};Server=identityservice_db;Port=5432;Database=${POSTGRES_DB:?database name not set};
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Production
+  
+  identityservice_db:
+    container_name: identity_service_postgres_db
+    image: postgres:15.4-alpine
+    restart: on-failure
+    ports:
+      - 5430:5432
+    networks:
+      - identity_db_network
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?database user not set}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?database password not set}
+      - POSTGRES_DB=${POSTGRES_DB:?database name not set}
+    volumes:
+      - identity_db_data:/var/lib/postgresql/data
+
+#  db_admin:
+#    container_name: pgAdmin4
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - forum_db_network
+#    environment:
+#      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL:?pgadmin email not set}
+#      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD:?pgadmin password not set}
+#      - PGADMIN_LISTEN_PORT=8080
+#    image: dpage/pgadmin4:7.5
+#    volumes:
+#      - forum_pgadmin_data:/var/lib/pgadmin
+#    tty: true
+
+networks:
+  identity_db_network:
+    driver: bridge
+
+volumes:
+  identity_db_data:
+#  forum_pgadmin_data:

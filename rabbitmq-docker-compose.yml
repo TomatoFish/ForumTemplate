@@ -1,0 +1,21 @@
+﻿version: "3.8"
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USERNAME}
+#      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    image: rabbitmq:3.12-management-alpine
+    networks:
+      - rabbit_network
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
+networks:
+  rabbit_network:
+    driver: bridge
+    name: rabbit_network
