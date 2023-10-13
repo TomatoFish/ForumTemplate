@@ -69,6 +69,14 @@ else
     });
 }
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(builder.Configuration["Frontend:WebApp"]!);
+    });
+});
+
 builder.Services.AddScoped<IPostRepo, PostRepo>();
 builder.Services.AddScoped<IAsyncMessageProvider, AsyncMessageProvider>();
 
@@ -82,6 +90,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseCors();
 
 app.UseAuthorization();
 

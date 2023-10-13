@@ -51,6 +51,14 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(builder.Configuration["Frontend:WebApp"]!);
+    });
+});
+
 if (builder.Environment.IsProduction())
 {
     Console.WriteLine("--> Use Postgres Server");
@@ -80,6 +88,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseCors();
 
 app.UseAuthorization();
 

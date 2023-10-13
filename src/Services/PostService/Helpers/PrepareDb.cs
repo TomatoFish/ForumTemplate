@@ -43,17 +43,17 @@ public static class PrepareDb
             {
                 new Post()
                 {
-                    UserId = 1, ThemeId = 1, Content = "Message 1 from user 1 in theme 1",
+                    UserId = 1, ThemeId = 1, Header = "Header 1", Content = "Message 1 from user 1 in theme 1",
                     CreationTimeStamp = new DateTime(2023, 9, 11, 13, 25, 33)
                 },
                 new Post()
                 {
-                    UserId = 2, ThemeId = 2, Content = "Message 1 from user 2 in theme 2",
+                    UserId = 2, ThemeId = 2, Header = "Header 2", Content = "Message 1 from user 2 in theme 2",
                     CreationTimeStamp = new DateTime(2023, 9, 12, 15, 3, 1)
                 },
                 new Post()
                 {
-                    UserId = 1, ThemeId = 2, Content = "Message 2 from user 1 in theme 2",
+                    UserId = 1, ThemeId = 2, Header = "Header 3", Content = "Message 2 from user 1 in theme 2",
                     CreationTimeStamp = new DateTime(2023, 9, 12, 16, 48, 15)
                 }
             });

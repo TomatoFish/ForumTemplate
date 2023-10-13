@@ -15,6 +15,9 @@ public class Post
     public long ThemeId { get; set; }
     
     [Required]
+    public string? Header { get; set; }
+    
+    [Required]
     public string? Content { get; set; }
 
     [Required]

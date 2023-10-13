@@ -29,7 +29,7 @@ public class ThemeRepo : IThemeRepo
     public IEnumerable<Theme> GetThemesWithFilters(int? parentThemeId = null, int? userId = null, int? themeId = null)
     {
         return _context.Themes.Where(post =>
-            (parentThemeId == null || (post.ParentTheme != null && post.ParentTheme.Id == parentThemeId.Value)) &&
+            (parentThemeId == null || (parentThemeId.Value == 0 && post.ParentTheme == null) || (post.ParentTheme != null && post.ParentTheme.Id == parentThemeId.Value)) &&
             (userId == null || post.UserId == userId.Value) &&
             (themeId == null || post.Id == themeId.Value));
     }
