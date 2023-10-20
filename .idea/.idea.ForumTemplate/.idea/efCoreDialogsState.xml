@@ -8,6 +8,7 @@
         <entry key="Common:af0d7e5a-8be2-4117-9212-9d4fde11bc58:dbContext" value="ThemeService.Data.AppDbContext" />
         <entry key="Common:b9795768-4cb1-4b9f-97f8-6a42f102a5a8:dbContext" value="PostService.Data.AppDbContext" />
         <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:f10d3874-5fb6-4d66-ad1c-079efeb2997c:dbContext" value="ForumService.Data.AppDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
       </map>

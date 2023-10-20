@@ -1,0 +1,48 @@
+﻿version: '3.8'
+services:
+  forumservice:
+    container_name: forum_service
+    restart: on-failure
+    ports:
+      - "8010:80"
+      - "8011:443"
+    build:
+      context: .
+      dockerfile: src/Services/ForumService/Dockerfile
+    networks:
+      - forum_db_network
+      - rabbit_network
+    depends_on:
+      - forum_db
+    environment:
+      - ConnectionStrings__DbContext=User Id=${POSTGRES_USER:?database user not set};Password=${POSTGRES_PASSWORD:?database password not set};Server=forum_db;Port=5432;Database=${POSTGRES_DB:?database name not set};
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Production
+      - RabbitMQ__Host=${RABBITMQ_HOST}
+      - RabbitMQ__Port=${RABBITMQ_PORT}
+      - RabbitMQ__UserName=${RABBITMQ_USERNAME}
+      - RabbitMQ__Password=${RABBITMQ_PASSWORD}
+
+  forum_db:
+    container_name: forum_postgres_db
+    image: postgres:15.4-alpine
+    ports:
+      - "5431:5432"
+    networks:
+      - forum_db_network
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?database user not set}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?database password not set}
+      - POSTGRES_DB=${POSTGRES_DB:?database name not set}
+    volumes:
+      - forum_db_data:/var/lib/postgresql/data
+
+networks:
+  forum_db_network:
+    driver: bridge
+  rabbit_network:
+    external: true
+    name: rabbit_network
+
+volumes:
+  forum_db_data:
