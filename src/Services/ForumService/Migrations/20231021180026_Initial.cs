@@ -65,7 +65,7 @@ namespace ForumService.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     PostId = table.Column<long>(type: "bigint", nullable: false),
-                    ParentCommentId = table.Column<long>(type: "bigint", nullable: false),
+                    ParentCommentId = table.Column<long>(type: "bigint", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: false),
                     CreationTimeStamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -76,8 +76,7 @@ namespace ForumService.Migrations
                         name: "FK_Comments_Comments_ParentCommentId",
                         column: x => x.ParentCommentId,
                         principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,

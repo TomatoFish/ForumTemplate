@@ -17,10 +17,8 @@ public class Comment
     [Required]
     public Post? Post { get; set; }
     
-    [Required]
-    public long ParentCommentId { get; set; }
+    public long? ParentCommentId { get; set; }
     
-    [Required]
     public Comment? ParentComment { get; set; }
     
     [Required]

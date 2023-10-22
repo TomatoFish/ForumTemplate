@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ForumService.AsyncDataServices;
 using ForumService.Data;
 using ForumService.Dtos;
+using ForumService.Helpers;
 using ForumService.Models;
 
 namespace ForumService.Controllers;
@@ -46,6 +47,7 @@ public class PostController : ControllerBase
     {
         var postModel = _mapper.Map<Post>(postCreate);
         postModel.CreationTimeStamp = DateTime.UtcNow;
+        postModel.UserId = UserHelper.GetUserId(HttpContext);
         
         _repository.CreatePost(postModel);
         _repository.SaveChanges();

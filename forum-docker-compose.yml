@@ -26,6 +26,7 @@ services:
   forum_db:
     container_name: forum_postgres_db
     image: postgres:15.4-alpine
+    restart: on-failure
     ports:
       - "5431:5432"
     networks:

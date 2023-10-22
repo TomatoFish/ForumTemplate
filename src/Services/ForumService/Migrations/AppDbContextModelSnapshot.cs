@@ -37,7 +37,7 @@ namespace ForumService.Migrations
                     b.Property<DateTime>("CreationTimeStamp")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("ParentCommentId")
+                    b.Property<long?>("ParentCommentId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("PostId")
@@ -124,9 +124,7 @@ namespace ForumService.Migrations
                 {
                     b.HasOne("ForumService.Models.Comment", "ParentComment")
                         .WithMany("Comments")
-                        .HasForeignKey("ParentCommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParentCommentId");
 
                     b.HasOne("ForumService.Models.Post", "Post")
                         .WithMany("Comments")

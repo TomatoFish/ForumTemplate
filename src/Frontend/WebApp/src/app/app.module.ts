@@ -10,6 +10,9 @@ import { GlobalErrorComponent } from './components/global-error/global-error.com
 import { PostCollectionComponent } from './components/posts/post-collection/post-collection.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { PostDetailsComponent } from './components/posts/post-details/post-details.component';
+import { CommentComponent } from './components/comments/comment/comment.component';
+import { CommentCollectionComponent } from './components/comments/comment-collection/comment-collection.component';
+import { MultidimensionalViewComponent } from './extentions/multidimentional-array/component/multidimentional-array.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { PostDetailsComponent } from './components/posts/post-details/post-detai
     PostCollectionComponent,
     PostComponent,
     PostDetailsComponent,
-    GlobalErrorComponent
+    CommentComponent,
+    CommentCollectionComponent,
+    GlobalErrorComponent,
+    MultidimensionalViewComponent
   ],
   imports: [
     BrowserModule,

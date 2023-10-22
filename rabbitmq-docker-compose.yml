@@ -2,6 +2,7 @@
 services:
   rabbitmq:
     container_name: rabbitmq
+    restart: on-failure
     ports:
       - "5673:5672"
       - "15673:15672"

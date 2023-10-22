@@ -9,7 +9,7 @@ import { ErrorService } from "./error.service";
 })
 export class PostService 
 {
-    url: string = "http://localhost:5152/post"
+    url: string = "http://localhost:8010/post"
 
     constructor(private http: HttpClient, private errorService: ErrorService)
     {

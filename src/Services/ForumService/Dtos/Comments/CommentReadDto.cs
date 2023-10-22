@@ -13,4 +13,6 @@ public class CommentReadDto
     public string? Content { get; set; }
 
     public DateTime CreationTimeStamp { get; set; }
+    
+    public ICollection<CommentReadDto> Comments { get; set; } = new List<CommentReadDto>();
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ForumService.Data;
 using ForumService.Dtos;
+using ForumService.Helpers;
 using ForumService.Models;
 
 namespace ForumService.Controllers;
@@ -41,7 +42,7 @@ public class ThemeController : ControllerBase
     {
         var themeModel = _mapper.Map<Theme>(themeCreate);
         themeModel.CreationTimeStamp = DateTime.UtcNow;
-        themeModel.UserId = GetUserId();
+        themeModel.UserId = UserHelper.GetUserId(HttpContext);
         if (themeCreate.ParentThemeId != null)
         {
             var parentTheme = _repository.GetThemesWithFilters(null, null, themeCreate.ParentThemeId.Value).FirstOrDefault();
@@ -57,20 +58,5 @@ public class ThemeController : ControllerBase
         var themeRead = _mapper.Map<ThemeReadDto>(themeModel);
         
         return CreatedAtRoute(nameof(GetThemes), new { themeRead.Id }, themeRead);
-    }
-    
-    private IEnumerable<Claim> GetUserClaims()
-    {
-        var identity = HttpContext.User.Identity as ClaimsIdentity;
-        var identityClaims = identity.Claims;
-        return identityClaims;
-    }
-
-    private long GetUserId()
-    {
-        var claims = GetUserClaims();
-        var idClaim = claims.FirstOrDefault(c => c.Type == "Id");
-        var id = Convert.ToInt64(idClaim.Value);
-        return id;
     }
 }

@@ -1,6 +1,7 @@
 using AutoMapper;
 using ForumService.Data;
 using ForumService.Dtos;
+using ForumService.Helpers;
 using ForumService.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,8 @@ public class CommentController : ControllerBase
             return Empty;
         }
 
+        commentModels = CommentHelper.FormatStructure(commentModels, parentCommentId);
+        
         var commentReads = _mapper.Map<IEnumerable<CommentReadDto>>(commentModels);
         return Ok(commentReads);
     }
@@ -42,12 +45,13 @@ public class CommentController : ControllerBase
     {
         var commentModel = _mapper.Map<Comment>(commentCreate);
         commentModel.CreationTimeStamp = DateTime.UtcNow;
-        
+        commentModel.UserId = UserHelper.GetUserId(HttpContext);
+
         _repository.CreateComment(commentModel);
         _repository.SaveChanges();
         
-        var postRead = _mapper.Map<PostReadDto>(commentModel);
+        var commentRead = _mapper.Map<CommentReadDto>(commentModel);
         
-        return CreatedAtRoute(nameof(GetComments), new { postRead.Id }, postRead);
+        return CreatedAtRoute(nameof(GetComments), new { commentRead.Id }, commentRead);
     }
 }

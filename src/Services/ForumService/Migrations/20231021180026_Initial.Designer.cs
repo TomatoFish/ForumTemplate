@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ForumService.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231020132245_Initial")]
+    [Migration("20231021180026_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -40,7 +40,7 @@ namespace ForumService.Migrations
                     b.Property<DateTime>("CreationTimeStamp")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("ParentCommentId")
+                    b.Property<long?>("ParentCommentId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("PostId")
@@ -127,9 +127,7 @@ namespace ForumService.Migrations
                 {
                     b.HasOne("ForumService.Models.Comment", "ParentComment")
                         .WithMany("Comments")
-                        .HasForeignKey("ParentCommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParentCommentId");
 
                     b.HasOne("ForumService.Models.Post", "Post")
                         .WithMany("Comments")

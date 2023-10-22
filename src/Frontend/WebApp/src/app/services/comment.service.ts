@@ -1,30 +1,30 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http'
 import { Observable, catchError, retry, throwError } from "rxjs";
-import { ITheme } from "../models/theme";
+import { IComment } from "../models/comment";
 import { ErrorService } from "./error.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class ThemeService 
+export class CommentService 
 {
-    url: string = "http://localhost:8010/theme"
+    url: string = "http://localhost:8010/comment"
 
     constructor(private http: HttpClient, private errorService: ErrorService)
     {
     }
 
-    getAllThemes() : Observable<ITheme[]>
+    getAllComments() : Observable<IComment[]>
     {
-        return this.http.get<ITheme[]>(this.url);
+        return this.http.get<IComment[]>(this.url);
     }
 
-    getThemesByParentTheme(perentTheme: number) : Observable<ITheme[]>
+    getCommentsByPost(postId: number) : Observable<IComment[]>
     {
-        return this.http.get<ITheme[]>(this.url, {
+        return this.http.get<IComment[]>(this.url, {
             params: new HttpParams({
-                fromObject: {parentThemeId: perentTheme}
+                fromObject: {themeId: postId}
             })
         }).pipe(
             retry(),

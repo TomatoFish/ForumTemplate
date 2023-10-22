@@ -8,7 +8,7 @@ public class CommentProfiles : Profile
 {
     public CommentProfiles()
     {
-        CreateMap<Comment, CommentReadDto>();//.ForMember(commentRead => commentRead.PostId, opt => opt.MapFrom(comment => comment.Post.Id));
+        CreateMap<Comment, CommentReadDto>();
         CreateMap<CommentCreateDto, Comment>();
     }
 }
