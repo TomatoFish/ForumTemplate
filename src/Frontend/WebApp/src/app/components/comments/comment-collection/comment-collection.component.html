@@ -1,9 +1,5 @@
-Comments:
-
-<!-- <app-comment
-    *ngFor="let comment of comments$ | async" [comments]="comment"
-></app-comment> -->
-
-<app-comment
-    [comments$ | async]="comments"
-></app-comment>
+<div *ngIf="comments != null">
+    <app-comment
+        *ngFor="let item of comments" [comment]="item"
+    ></app-comment>
+</div>

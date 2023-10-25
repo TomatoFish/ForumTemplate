@@ -12,7 +12,6 @@ import { PostComponent } from './components/posts/post/post.component';
 import { PostDetailsComponent } from './components/posts/post-details/post-details.component';
 import { CommentComponent } from './components/comments/comment/comment.component';
 import { CommentCollectionComponent } from './components/comments/comment-collection/comment-collection.component';
-import { MultidimensionalViewComponent } from './extentions/multidimentional-array/component/multidimentional-array.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { MultidimensionalViewComponent } from './extentions/multidimentional-arr
     PostDetailsComponent,
     CommentComponent,
     CommentCollectionComponent,
-    GlobalErrorComponent,
-    MultidimensionalViewComponent
+    GlobalErrorComponent
   ],
   imports: [
     BrowserModule,

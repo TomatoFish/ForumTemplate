@@ -9,12 +9,7 @@ export class CommentComponent {
     @Input()
     comment!: IComment
 
-    @HostBinding("class._array")
-    get isArray(): boolean {
+    get haveChilds(): boolean {
         return this.comment.comments.length > 0;
-    }
-
-    constructor()
-    {
     }
 }

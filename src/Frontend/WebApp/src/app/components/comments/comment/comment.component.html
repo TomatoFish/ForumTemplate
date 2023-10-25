@@ -1,24 +1,12 @@
-<!-- <div class="py-1 px-2 flex w-full items-start flex-col mb-2 hover:bg-blue-100 focus-visible:outline focus-visible:outline-1 focus-visible:outline-blue-200">
-    <p>{{ comment.userId }}</p>
-    <p>{{ comment.content }}</p>
-    <span class="text-xs font-medium text-blue-600">{{ comment.creationTimeStamp }}</span>
-</div> -->
-
-<div class="py-1 px-2 flex w-full items-start flex-col mb-2 hover:bg-blue-100 focus-visible:outline focus-visible:outline-1 focus-visible:outline-blue-200">
-    <p>{{ comment.userId }}</p>
-    <p>{{ comment.content }}</p>
-    <span class="text-xs font-medium text-blue-600">{{ comment.creationTimeStamp }}</span>
+<div class="py-1 px-2 w-full mb-2 flex">
+    <img src="arrow.png" />
+    <div class="flex-col">
+        <p>User: {{ comment.userId }}</p>
+        <p>{{ comment.content }}</p>
+        <span class="text-xs font-medium text-blue-600">{{ comment.creationTimeStamp }}</span>
+    </div>
 </div>
 
-<ng-container *ngIf="isArray">
-    <app-comment *ngFor="let item of comment.comments" [comment]="item"></app-comment>
-</ng-container>
-
-
-<!-- <ng-container *ngIf="isArray; else itemView">
-    <multidimentional-array *ngFor="let item of value" [value]="item"></multidimentional-array>
-    <app-comment *ngFor="let item of comment" [comment]="item"></app-comment>
-</ng-container>
-<ng-template #itemView>
-
-</ng-template> -->
+<div class="ml-5">
+    <app-comment-collection *ngIf="haveChilds" [comments]="comment.comments"></app-comment-collection>
+</div>

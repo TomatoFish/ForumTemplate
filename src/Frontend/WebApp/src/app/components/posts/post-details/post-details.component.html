@@ -3,4 +3,6 @@
     <p>{{ post.content }}</p>
 </div>
 
-<app-comment-collection></app-comment-collection>
+Comments:
+
+<app-comment-collection [comments]="comments$ | async"></app-comment-collection>
