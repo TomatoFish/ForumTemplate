@@ -4,5 +4,6 @@ namespace IdentityService.Managers;
 
 public interface ITokenManager
 {
-    string CreateToken(User user);
+    string CreateAccessToken(User user, DateTime expirationTime);
+    string CreateRefreshToken();
 }

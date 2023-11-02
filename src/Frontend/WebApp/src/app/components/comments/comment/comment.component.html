@@ -1,12 +1,19 @@
-<div class="py-1 px-2 w-full mb-2 flex">
-    <img src="arrow.png" />
-    <div class="flex-col">
+<div class="py-1 px-2 w-full mb-2">
+    <div class="grow-0">
         <p>User: {{ comment.userId }}</p>
-        <p>{{ comment.content }}</p>
-        <span class="text-xs font-medium text-blue-600">{{ comment.creationTimeStamp }}</span>
+    </div>
+    <div class="flex">
+        <div class="flex-grow-0 mr-3">
+            <img src="arrow.png" width="20px" height="20px" (click)="onCollapseClick()" />
+        </div>
+        <div class="flex-grow">
+            <p>{{ comment.content }}</p>
+            <span class="text-xs font-medium text-blue-600">{{ comment.creationTimeStamp }}</span>
+        </div>
     </div>
 </div>
 
-<div class="ml-5">
+
+<div class="ml-5" *ngIf="!isCollapsed">
     <app-comment-collection *ngIf="haveChilds" [comments]="comment.comments"></app-comment-collection>
 </div>

@@ -9,7 +9,13 @@ export class CommentComponent {
     @Input()
     comment!: IComment
 
+    isCollapsed: boolean = false
+
     get haveChilds(): boolean {
         return this.comment.comments.length > 0;
+    }
+
+    onCollapseClick() {
+        this.isCollapsed = !this.isCollapsed;
     }
 }

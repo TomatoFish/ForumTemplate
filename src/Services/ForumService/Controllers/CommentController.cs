@@ -16,7 +16,7 @@ public class CommentController : ControllerBase
     private readonly IMapper _mapper;
     private readonly ICommentRepo _repository;
 
-    public CommentController(ILogger<PostController> logger, IMapper mapper, ICommentRepo repository)
+    public CommentController(ILogger<CommentController> logger, IMapper mapper, ICommentRepo repository)
     {
         _logger = logger;
         _mapper = mapper;

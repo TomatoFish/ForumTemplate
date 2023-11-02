@@ -12,6 +12,10 @@ import { PostComponent } from './components/posts/post/post.component';
 import { PostDetailsComponent } from './components/posts/post-details/post-details.component';
 import { CommentComponent } from './components/comments/comment/comment.component';
 import { CommentCollectionComponent } from './components/comments/comment-collection/comment-collection.component';
+import { LoginComponent } from './components/identity/login/login.component';
+import { RegistrationComponent } from './components/identity/registration/registration.component';
+import { CoreModule } from './core.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,16 @@ import { CommentCollectionComponent } from './components/comments/comment-collec
     PostDetailsComponent,
     CommentComponent,
     CommentCollectionComponent,
+    LoginComponent,
+    RegistrationComponent,
     GlobalErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

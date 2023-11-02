@@ -48,7 +48,7 @@ builder.Services.AddAuthentication(opt =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"]!,
         ValidAudience = builder.Configuration["Jwt:Audience"]!,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SigningKey"]!)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SigningKey"]!))
     };
 });
 
@@ -69,6 +69,16 @@ else
     });
 }
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(builder.Configuration["Frontend:WebApp"]!)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ITokenManager, TokenManager>();
 
@@ -82,10 +92,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
+app.UseRouting();
+app.UseCors();
 app.UseAuthorization();
-
 app.MapControllers();
 
 PrepareDb.PreparePopulation(app, app.Environment.IsProduction());

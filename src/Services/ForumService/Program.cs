@@ -72,7 +72,9 @@ builder.Services.AddCors(opt =>
 {
     opt.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins(builder.Configuration["Frontend:WebApp"]!);
+        policy.WithOrigins(builder.Configuration["Frontend:WebApp"]!)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
